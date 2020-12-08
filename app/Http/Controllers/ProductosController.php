@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Productos;
-use Illuminate\Http\Request;
+use Illuminate\Http \Request;   
 
 class ProductosController extends Controller
 {
@@ -15,7 +15,7 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Productos::all();
-        return view('productos.index', compact('productos'));
+        return view('producto.index', compact('productos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        return view('producto.crea');
     }
 
     /**
@@ -36,7 +36,15 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guardaDato = $request->validate([
+            'nombre' => 'required|max:255',
+            'cantidad' => 'required|numeric',
+            'precioVenta' => 'required|numeric',
+            'precioCompra' => 'required|numeric',
+            'proveedor' => 'required|max:255',
+        ]);
+        $producto = Productos::create($guardaDato);
+        return redirect('/productos')->with('Completado', 'Guardado');
     }
 
     /**
