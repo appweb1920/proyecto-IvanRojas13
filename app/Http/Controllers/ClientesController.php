@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Productos;
-use Illuminate\Http \Request;   
+use App\Clientes;
+use Illuminate\Http\Request;
 
-class ProductosController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Productos::all();
-        return view('producto.index', compact('productos'));
+        $clientes = Clientes::all();
+        return view('cliente.indexCliente', compact('clientes'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view('producto.crea');
+        return view('cliente.creaCliente');
     }
 
     /**
@@ -38,22 +38,21 @@ class ProductosController extends Controller
     {
         $guardaDato = $request->validate([
             'nombre' => 'required|max:255',
-            'cantidad' => 'required|numeric',
-            'precioVenta' => 'required|numeric',
-            'precioCompra' => 'required|numeric',
-            'proveedor' => 'required|max:255',
+            'apellido' => 'required|max:255',
+            'numTelefono' => 'required|numeric',
+            'deuda' => 'required|numeric',
         ]);
-        $producto = Productos::create($guardaDato);
-        return redirect('/productos')->with('Completado', 'Guardado');
+        $cliente = Clientes::create($guardaDato);
+        return redirect('/clientes')->with('Completado', 'Guardado');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Productos  $productos
+     * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function show(Productos $productos)
+    public function show(Clientes $clientes)
     {
         //
     }
@@ -61,42 +60,41 @@ class ProductosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Productos  $productos
+     * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $producto = Productos::findorfail($id);
-        return view('producto.edita', compact('producto'));
+        $cliente = Clientes::findorfail($id);
+        return view('cliente.editaCliente', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Productos  $productos
+     * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $guardaDato = $request->validate([
             'nombre' => 'required|max:255',
-            'cantidad' => 'required|numeric',
-            'precioVenta' => 'required|numeric',
-            'precioCompra' => 'required|numeric',
-            'proveedor' => 'required|max:255',
+            'apellido' => 'required|max:255',
+            'numTelefono' => 'required|numeric',
+            'deuda' => 'required|numeric',
         ]);
-        Productos::whereId($id)->update($guardaDato);
-        return redirect('/productos')->with('Completado', 'Guardado');
+        Clientes::whereId($id)->update($guardaDato);
+        return redirect('/clientes')->with('Completado', 'Guardado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Productos  $productos
+     * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Productos $productos)
+    public function destroy(Clientes $clientes)
     {
         //
     }

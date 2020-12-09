@@ -32,8 +32,8 @@
                         Clientes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Tus Clientes</a>
-                        <a class="dropdown-item" href="#">Nuevo Cliente</a>
+                        <a class="dropdown-item" href="{{route('clientes.index')}}">Tus Clientes</a>
+                        <a class="dropdown-item" href="{{route('clientes.create')}}">Nuevo Cliente</a>
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Division</a>
                         </div>
@@ -45,7 +45,7 @@
                         Productos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Tus Productos</a>
+                        <a class="dropdown-item" href="{{route('productos.index')}}">Tus Productos</a>
                         <a class="dropdown-item" href="{{route('productos.create')}}">Nuevo Producto</a>
                     </li>
                 </ul>

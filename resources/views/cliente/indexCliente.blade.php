@@ -19,26 +19,23 @@
             <tr class="table">
                 <td>ID</td>
                 <td>Nombre</td>
-                <td>Cantidad</td>
-                <td>Precio de venta</td>
-                <td>Precio de compra</td>
-                <td>Proveedor</td>
+                <td>Apellido</td>
+                <td>Numero de Telefono</td>
+                <td>Deuda</td>
                 <td class="text-center">Acción</td>
             </tr>
         </thead>
         <tbody>
-            @foreach($productos as $productoss)
+            @foreach($clientes as $clientess)
             <tr>
-                <td>{{$productoss->id}}</td>
-                <td>{{$productoss->nombre}}</td>
-                <td>{{$productoss->cantidad}}</td>
-                <td>{{$productoss->precioVenta}}</td>
-                <td>{{$productoss->precioCompra}}</td>
-                <td>{{$productoss->proveedor}}</td>
+                <td>{{$clientess->id}}</td>
+                <td>{{$clientess->nombre}}</td>
+                <td>{{$clientess->apellido}}</td>
+                <td>{{$clientess->numTelefono}}</td>
+                <td>{{$clientess->deuda}}</td>
                 <td class="text-center">
-                    <a href="{{route('productos.edit', $productoss->id)}}" class="btn btn-primary btn-sm"">Edita</a>
+                    <a href="{{route('clientes.edit', $clientess->id)}}" class="btn btn-primary btn-sm"">Edita</a>
                     
-                </td>
                 </td>
             </tr>
             @endforeach

@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::resource('productos', 'ProductosController');
-
+Route::resource('clientes', 'ClientesController');
 
 
