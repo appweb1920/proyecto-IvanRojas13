@@ -35,9 +35,11 @@
                 <td>{{$clientess->deuda}}</td>
                 <td class="text-center">
                     <a href="{{route('clientes.edit', $clientess->id)}}" class="btn btn-primary btn-sm"">Edita</a>
-                    
+                    <a href="{{route('clientes.show', $clientess->id)}}" class="btn btn-primary btn-sm"">Agrega Compra</a>
+                    <a href="{{route('clientes.nuevoProd', $clientess->id)}}" class="btn btn-primary btn-sm"">Info</a>
+
                 </td>
-            </tr>
+            </>
             @endforeach
         </tbody>
     </table>

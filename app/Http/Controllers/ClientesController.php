@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clientes;
+use App\Productos;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -14,8 +15,11 @@ class ClientesController extends Controller
      */
     public function index()
     {
+        $productos = Productos::all();
+        $data = array("lista_productos" => $productos);
+
         $clientes = Clientes::all();
-        return view('cliente.indexCliente', compact('clientes'));
+        return response()->view('cliente.indexCliente', compact('clientes', $data));
     }
 
     /**
@@ -52,11 +56,18 @@ class ClientesController extends Controller
      * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function show(Clientes $clientes)
+    public function show($id)
     {
-        //
-    }
+        $productos = Productos::all();
+        $data = array("lista_productos" => $productos);
 
+        $cliente = Clientes::findorfail($id);
+        return view('cliente.agregaProducto', $data)->with('cliente',$cliente);
+        //return view('cliente.agregaProducto', compact('cliente'));
+        //return response()->view('cliente.agregaProducto', compact('cliente'));
+
+        //return response()->view('cliente.agregaProducto', compact('$data'), compact('cliente'));    }
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,6 +78,22 @@ class ClientesController extends Controller
     {
         $cliente = Clientes::findorfail($id);
         return view('cliente.editaCliente', compact('cliente'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Clientes  $clientes
+     * @return \Illuminate\Http\Response
+     */
+    public function nuevoProd($id)
+    {
+        $productos = Productos::all();
+        $data = array("lista_productos" => $productos);
+
+        $clientes = Clientes::findorfail($id);
+        return view('cliente.listaProductosCliente', $data)->with('cliente',$clientes);
+        //return response()->view('cliente.listaProductosCliente', compact('clientes', $data));
     }
 
     /**
@@ -83,9 +110,25 @@ class ClientesController extends Controller
             'apellido' => 'required|max:255',
             'numTelefono' => 'required|numeric',
             'deuda' => 'required|numeric',
+            'producto_id' =>'numeric',
         ]);
+
+
         Clientes::whereId($id)->update($guardaDato);
         return redirect('/clientes')->with('Completado', 'Guardado');
+        /*$guardaDato = $request->validate([
+            'nombre' => 'required|max:255',
+            'apellido' => 'required|max:255',
+            'numTelefono' => 'required|numeric',
+            'deuda' => 'required|numeric',
+        ]);
+        Clientes::whereId($id)->update($guardaDato);
+        return redirect('/clientes')->with('Completado', 'Guardado');*/
+    }
+
+    public function updateProducto(Request $request, $id)
+    {
+        return view('clientes.listaProductosCliente');
     }
 
     /**
@@ -96,6 +139,6 @@ class ClientesController extends Controller
      */
     public function destroy(Clientes $clientes)
     {
-        //
+        return view('clientes.listaProductosCliente');
     }
 }

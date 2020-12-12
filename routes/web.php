@@ -19,5 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('productos', 'ProductosController');
 Route::resource('clientes', 'ClientesController');
-
-
+Route::get('nuevoProd/{id}', 'ClientesController@nuevoProd')->name('clientes.nuevoProd');
