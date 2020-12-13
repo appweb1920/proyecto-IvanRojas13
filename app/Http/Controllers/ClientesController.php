@@ -92,7 +92,8 @@ class ClientesController extends Controller
         $data = array("lista_productos" => $productos);
 
         $clientes = Clientes::findorfail($id);
-        return view('cliente.listaProductosCliente', $data)->with('cliente',$clientes);
+        //return view('cliente.listaProductosCliente', $data)->with('cliente',$clientes);
+        return view('cliente.listaProductosCliente')->with('cliente',$clientes)->with('producto',$productos);
         //return response()->view('cliente.listaProductosCliente', compact('clientes', $data));
     }
 
@@ -113,6 +114,9 @@ class ClientesController extends Controller
             'producto_id' =>'numeric',
         ]);
 
+        /*$producto = new Productos();
+        $producto->producto_id = $request['producto_id'];
+        $producto->save();*/
 
         Clientes::whereId($id)->update($guardaDato);
         return redirect('/clientes')->with('Completado', 'Guardado');

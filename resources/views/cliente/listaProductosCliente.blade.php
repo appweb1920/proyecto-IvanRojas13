@@ -24,6 +24,12 @@
             </tr>
         </thead>
         <tbody>
+        @foreach($producto as $productos)
+            <tr>
+                <td>{{$productos->nombre}}</td>
+                <td>{{$productos->precioVenta}}</td>
+            </tr>
+            @endforeach
             <tr>
                 <td>{{$cliente->productoRelacionado->nombre}}</td>
                 <td>{{$cliente->productoRelacionado->precioVenta}}</td>

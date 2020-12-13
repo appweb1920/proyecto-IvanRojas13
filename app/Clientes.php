@@ -11,5 +11,7 @@ class Clientes extends Model
     public function productoRelacionado() 
     {
         return $this->belongsTo('App\Productos', 'producto_id');
+        //return $this->belongsToMany('App\Productos', 'producto_id');
+
     }
 }
