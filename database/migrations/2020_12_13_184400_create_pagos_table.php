@@ -1,12 +1,10 @@
 <?php
 
-use App\Productos;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientesTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,19 +13,19 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('producto_id')->nullable();
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->bigInteger('numTelefono');
             $table->float('deuda');
-            $table->float('pago')->nullable();
+            $table->float('pago');
+            $table->unsignedBigInteger('producto_id')->nullable();
+            $table->unsignedBigInteger('cliente_id')->nullable();
             $table->timestamps();
-
 
             $table->foreign('producto_id')->references('id')
                 ->on('productos');
+
+            $table->foreign('cliente_id')->references('id')
+                ->on('clientes');
         });
     }
 
@@ -38,6 +36,6 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('pagos');
     }
 }

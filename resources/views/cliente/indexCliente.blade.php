@@ -37,7 +37,7 @@
                     <a href="{{route('clientes.edit', $clientess->id)}}" class="btn btn-primary btn-sm"">Edita</a>
                     <a href="{{route('clientes.show', $clientess->id)}}" class="btn btn-primary btn-sm"">Agrega Compra</a>
                     <a href="{{route('clientes.nuevoProd', $clientess->id)}}" class="btn btn-primary btn-sm"">Info</a>
-
+                    <a href="{{route('clientes.registraPago', $clientess->id)}}" class="btn btn-primary btn-sm"">Registra Pago</a>
                 </td>
             </>
             @endforeach

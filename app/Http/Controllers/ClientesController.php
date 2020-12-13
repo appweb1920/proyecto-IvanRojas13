@@ -112,27 +112,31 @@ class ClientesController extends Controller
             'numTelefono' => 'required|numeric',
             'deuda' => 'required|numeric',
             'producto_id' =>'numeric',
+            'pago' =>'numeric',
         ]);
-
-        /*$producto = new Productos();
-        $producto->producto_id = $request['producto_id'];
-        $producto->save();*/
 
         Clientes::whereId($id)->update($guardaDato);
         return redirect('/clientes')->with('Completado', 'Guardado');
-        /*$guardaDato = $request->validate([
-            'nombre' => 'required|max:255',
-            'apellido' => 'required|max:255',
-            'numTelefono' => 'required|numeric',
-            'deuda' => 'required|numeric',
-        ]);
-        Clientes::whereId($id)->update($guardaDato);
-        return redirect('/clientes')->with('Completado', 'Guardado');*/
     }
 
-    public function updateProducto(Request $request, $id)
+    public function registraPago($id)
     {
-        return view('clientes.listaProductosCliente');
+        $clientes = Clientes::findorfail($id);
+        return view('cliente.registraPago')->with('cliente',$clientes);
+    }
+
+    public function restaDeuda(Request $request, $id)
+    {
+        
+        $guardaDato = $request->validate([
+            'pago' =>'numeric',
+        ]);
+        $pagado = $request->input('pago');
+        Clientes::whereId($id)->decrement('deuda', $pagado);
+
+
+        //Clientes::whereId($id)->update($guardaDato);
+        return redirect('/clientes')->with('Completado', 'Guardado');
     }
 
     /**
@@ -143,6 +147,6 @@ class ClientesController extends Controller
      */
     public function destroy(Clientes $clientes)
     {
-        return view('clientes.listaProductosCliente');
+
     }
 }

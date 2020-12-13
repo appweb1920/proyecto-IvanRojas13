@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clientes extends Model
 {
-    protected $fillable = ['nombre', 'apellido', 'numTelefono', 'deuda'];
+    protected $fillable = ['nombre', 'apellido', 'numTelefono', 'deuda', 'pago'];
 
     public function productoRelacionado() 
     {
