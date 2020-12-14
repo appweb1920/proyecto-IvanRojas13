@@ -36,8 +36,12 @@
                 <td>{{$productoss->precioCompra}}</td>
                 <td>{{$productoss->proveedor}}</td>
                 <td class="text-center">
-                    <a href="{{route('productos.edit', $productoss->id)}}" class="btn btn-primary btn-sm"">Edita</a>
-                    
+                    <a href="{{route('productos.edit', $productoss->id)}}" class="btn btn-warning btn-sm"">Edita</a>
+                    <form action="{{route('productos.destroy', $productoss->id)}}" method="post" style="display: inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm"" type="submit">Elimina Producto</button>
+                    </form>
                 </td>
                 </td>
             </tr>

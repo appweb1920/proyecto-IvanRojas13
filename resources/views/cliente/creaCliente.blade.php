@@ -45,7 +45,7 @@
                 <label for="deuda">Deuda</label>
                 <input type="text" class="form-control" name="deuda"/>
             </div>
-            <button type="submit" class="btn btn-block btn-danger">Guardar</button>
+            <button type="submit" class="btn btn-block btn-success">Guardar</button>
         </form>
     </div>
 </div>

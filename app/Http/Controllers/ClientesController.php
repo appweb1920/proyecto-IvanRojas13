@@ -119,6 +119,16 @@ class ClientesController extends Controller
         return redirect('/clientes')->with('Completado', 'Guardado');
     }
 
+    public function updateProducto(Request $request, $id)
+    {
+        $guardaDato = $request->validate([
+            'producto_id' =>'numeric',
+        ]);
+
+        Clientes::whereId($id)->update($guardaDato);
+        return redirect('/clientes')->with('Completado', 'Guardado');
+    }
+
     public function registraPago($id)
     {
         $clientes = Clientes::findorfail($id);
@@ -127,7 +137,6 @@ class ClientesController extends Controller
 
     public function restaDeuda(Request $request, $id)
     {
-        
         $guardaDato = $request->validate([
             'pago' =>'numeric',
         ]);
@@ -145,8 +154,11 @@ class ClientesController extends Controller
      * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clientes $clientes)
+    public function destroy($id)
     {
+        $cliente = Clientes::findorfail($id);
+        $cliente->delete();
 
+        return redirect('/clientes')->with('Completado', 'Eliminado');
     }
 }

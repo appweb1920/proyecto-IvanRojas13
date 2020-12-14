@@ -32,7 +32,7 @@
                 <label for="pago">Pago</label>
                 <input type="text" class="form-control" name="pago" name="{{ $cliente->pago}}"/>
             </div>
-            <button type="submit" class="btn btn-block btn-danger">Listo</button>
+            <button type="submit" class="btn btn-block btn-primary">Listo</button>
         </form>
     </div>
 </div>

@@ -22,7 +22,7 @@ class CreatePagosTable extends Migration
             $table->timestamps();
 
             $table->foreign('producto_id')->references('id')
-                ->on('productos');
+                ->on('productos')->onDelete('cascade');
 
             $table->foreign('cliente_id')->references('id')
                 ->on('clientes');

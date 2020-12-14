@@ -49,7 +49,7 @@
                 <label for="costoPieza">Proveedor</label>
                 <input type="text" class="form-control" name="proveedor"/>
             </div>
-            <button type="submit" class="btn btn-block btn-danger">Guardar</button>
+            <button type="submit" class="btn btn-block btn-success">Guardar</button>
         </form>
     </div>
 </div>

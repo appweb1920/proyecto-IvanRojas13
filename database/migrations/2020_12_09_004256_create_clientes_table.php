@@ -27,7 +27,7 @@ class CreateClientesTable extends Migration
 
 
             $table->foreign('producto_id')->references('id')
-                ->on('productos');
+                ->on('productos')->onDelete('cascade');
         });
     }
 

@@ -44,7 +44,7 @@
                 <label for="costoPieza">Nueva Deuda</label>
                 <input type="text" class="form-control" name="deuda" value="{{ $cliente->deuda}}">
             </div>
-            <button type="submit" class="btn btn-block btn-danger">Edita</button>
+            <button type="submit" class="btn btn-block btn-warning">Edita</button>
         </form>
     </div>
 </div>
